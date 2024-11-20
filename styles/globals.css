@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 /* * DEFAULT THEME */
-/* @layer base {
+@layer base {
   :root {
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
@@ -74,12 +74,12 @@
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
-} */
+}
 
 /* * HTML STYLES */
-/* @layer base {
+@layer base {
   * {
-    @apply scroll-smooth border-border;
+    @apply border-border scroll-smooth;
   }
 
   body {
@@ -123,21 +123,21 @@
   }
 
   code {
-    @apply relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold;
+    @apply bg-muted relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold;
   }
 
   small {
     @apply text-sm font-light leading-tight;
   }
-} */
+}
 
 /* * CUSTOM CSS APPLY HERE */
-/* @layer base {
+@layer base {
   .desc {
-    @apply text-sm leading-tight text-muted-foreground;
+    @apply text-muted-foreground text-sm leading-tight;
   }
 
   .link {
-    @apply w-fit cursor-pointer text-muted-foreground underline-offset-4 hover:text-foreground hover:underline;
+    @apply text-muted-foreground w-fit cursor-pointer underline-offset-4 hover:text-foreground hover:underline;
   }
-} */
+}

@@ -63,19 +63,6 @@ npx prettier . --write
 npx prettier . --check
 ```
 
-### Bcrypt
-
-```
-npm i bcrypt
-npm i --save-dev @types/bcrypt
-```
-
-#### bcrypt.d.ts
-
-```
-declare module "bcrypt";
-```
-
 ### ShadCN
 
 ```sh
@@ -113,6 +100,13 @@ export function ThemeProvider({
 
 ```
 
+### Bcrypt
+
+```
+npm i bcrypt
+npm i --save-dev @types/bcrypt
+```
+
 ### Drizzle ORM
 
 ```sh
@@ -131,6 +125,12 @@ npm i drizzle-zod
 ```
 npm i @aws-sdk/client-s3
 npm i @aws-sdk/s3-request-presigner
+```
+
+#### bcrypt.d.ts
+
+```
+declare module "bcrypt";
 ```
 
 ### Auth JS

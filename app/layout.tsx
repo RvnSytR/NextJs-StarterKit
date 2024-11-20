@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 import "@/styles/globals.css";
 
-// import { ThemeProvider } from "next-themes";
-// import { Toaster } from "@/components/ui/sonner";
+import { ThemeProvider } from "next-themes";
+import { Toaster } from "@/components/ui/sonner";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -23,7 +23,7 @@ export default async function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={fontSans.variable}>
-        {/* <ThemeProvider
+        <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
@@ -31,8 +31,7 @@ export default async function RootLayout({
         >
           {children}
           <Toaster position="top-center" closeButton />
-        </ThemeProvider> */}
-        {children}
+        </ThemeProvider>
       </body>
     </html>
   );
