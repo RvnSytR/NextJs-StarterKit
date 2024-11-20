@@ -4,13 +4,14 @@ import React from "react";
 import Link from "next/link";
 import { useState } from "react";
 
-// import { LogoutHandler } from "@/app/login/sign";
+import { LogoutHandler } from "@/app/login/sign";
 import { ClientRedirect, ClientRevalidatePath } from "@/server/action";
 import { Delay } from "@/lib/helper";
 
+import { toast } from "sonner";
 import { LABEL } from "../content";
 import { CustomLoader, ICON_SIZE } from "./icons";
-import { toast } from "sonner";
+
 import { Button, ButtonProps } from "../ui/button";
 import { RefreshCw } from "lucide-react";
 
@@ -73,7 +74,7 @@ export function CustomButton({
 
   const RequiredNode = ({ req }: { req: string[] }): React.ReactNode => {
     return (
-      <div className="border-destructive rounded border p-2">
+      <div className="rounded border border-destructive p-2">
         <p>Custom Button of this type must have these property:</p>
 
         <ol className="flex list-inside list-decimal flex-col">
@@ -87,7 +88,7 @@ export function CustomButton({
 
   const logoutHandler = async () => {
     setLoading(true);
-    toast.promise(Delay(1), {
+    toast.promise(LogoutHandler(), {
       loading: LABEL.loading,
       success: () => {
         ClientRedirect("/login");

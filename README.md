@@ -127,12 +127,6 @@ npm i @aws-sdk/client-s3
 npm i @aws-sdk/s3-request-presigner
 ```
 
-#### bcrypt.d.ts
-
-```
-declare module "bcrypt";
-```
-
 ### Auth JS
 
 ```

@@ -1,4 +1,4 @@
-// import { CustomButton } from "@/components/global/custom-button";
+import { CustomButton } from "@/components/global/custom-button";
 
 export default function NotFound() {
   return (
@@ -13,7 +13,7 @@ export default function NotFound() {
         </h1>
       </div>
 
-      {/* <CustomButton
+      <CustomButton
         customType="nav"
         href="/"
         loadText="Go to Main Page"
@@ -22,7 +22,7 @@ export default function NotFound() {
         className="h-16 gap-x-6 rounded-full border-4 text-xl font-bold hover:border-primary"
       >
         Go to Main Page
-      </CustomButton> */}
+      </CustomButton>
     </div>
   );
 }
