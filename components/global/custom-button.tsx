@@ -4,11 +4,12 @@ import React from "react";
 import Link from "next/link";
 import { useState } from "react";
 
-import { LogoutHandler } from "@/app/login/sign";
+// import { LogoutHandler } from "@/app/login/sign";
 import { ClientRedirect, ClientRevalidatePath } from "@/server/action";
 import { Delay } from "@/lib/helper";
 
-import { CustomLoader, iconSize } from "./icons";
+import { LABEL } from "../content";
+import { CustomLoader, ICON_SIZE } from "./icons";
 import { toast } from "sonner";
 import { Button, ButtonProps } from "../ui/button";
 import { RefreshCw } from "lucide-react";
@@ -40,16 +41,13 @@ export function CustomButton({
 }: CustomButtonProps) {
   const [loading, setLoading] = useState<boolean>(false);
   const { size } = props;
-
-  const LOGOUT_TOAST_TEXT = "You've successfully logged out. See you soon!";
-  const LOGOUT_LOAD_TEXT = "Mengakhiri sesi...";
   if (customType === "logout") loadText = "Logging Out...";
 
   const LoaderNode = (): React.ReactNode => {
     const lnPos = loadPosition ?? "left";
-    const { sm, base, lg } = iconSize;
+    const { sm, base, lg } = ICON_SIZE;
 
-    const lnIconSize: number =
+    const lnICON_SIZE: number =
       size === "lg" ? lg : size === "sm" || size === "iconsm" ? sm : base;
 
     return (
@@ -57,7 +55,7 @@ export function CustomButton({
         {lnPos == "left" && (
           <CustomLoader
             customType="circle"
-            size={lnIconSize}
+            size={lnICON_SIZE}
             strokeWidth={size === "lg" ? 3 : 2}
           />
         )}
@@ -65,7 +63,7 @@ export function CustomButton({
         {lnPos == "right" && (
           <CustomLoader
             customType="circle"
-            size={lnIconSize}
+            size={lnICON_SIZE}
             strokeWidth={size === "lg" ? 3 : 2}
           />
         )}
@@ -89,12 +87,11 @@ export function CustomButton({
 
   const logoutHandler = async () => {
     setLoading(true);
-
-    toast.promise(LogoutHandler(), {
-      loading: LOGOUT_LOAD_TEXT,
+    toast.promise(Delay(1), {
+      loading: LABEL.loading,
       success: () => {
         ClientRedirect("/login");
-        return LOGOUT_TOAST_TEXT;
+        return LABEL.logout;
       },
       error: (e: Error) => e.message,
     });
@@ -146,7 +143,7 @@ export function CustomButton({
           {...props}
         >
           <RefreshCw
-            size={iconSize.base}
+            size={ICON_SIZE.base}
             className={loading ? "animate-spin" : ""}
           />
           {loading ? (loadText ?? "Revalidating...") : children}
@@ -178,7 +175,7 @@ export function CustomButton({
           disabled={loading}
           {...props}
         >
-          {loading ? <LoaderNode /> : children}
+          {children}
         </Button>
       );
 

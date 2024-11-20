@@ -7,7 +7,7 @@ import {
 import { useTheme } from "next-themes";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
-import { iconSize } from "./icons";
+import { ICON_SIZE } from "./icons";
 
 import {
   DropdownMenu,
@@ -36,11 +36,11 @@ export function ThemeToggle({ className }: ButtonProps) {
           className={cn("flex-none", className)}
         >
           <Sun
-            size={isMobile ? iconSize.base : iconSize.sm}
+            size={isMobile ? ICON_SIZE.base : ICON_SIZE.sm}
             className="rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
           />
           <Moon
-            size={isMobile ? iconSize.base : iconSize.sm}
+            size={isMobile ? ICON_SIZE.base : ICON_SIZE.sm}
             className="absolute rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"
           />
           <span className="sr-only">Toggle theme</span>

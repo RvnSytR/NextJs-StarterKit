@@ -1,4 +1,4 @@
-// import { CustomButton } from "@/components/global/custom-button";
+import { CustomButton } from "@/components/global/custom-button";
 import { ThemeToggle } from "@/components/global/theme-provider";
 
 export default async function Page() {
@@ -6,6 +6,7 @@ export default async function Page() {
     <div className="flex min-h-dvh flex-col items-center justify-center gap-y-4">
       <p>Hello from Homepage!</p>
       <p>This page is public and everyone can access it</p>
+
       <ThemeToggle />
 
       <p>
@@ -18,9 +19,9 @@ export default async function Page() {
         first. No free passes here! 🔒
       </p>
 
-      {/* <CustomButton customType="nav" variant="outline" href="/protected-route">
+      <CustomButton customType="nav" variant="outline" href="/protected-route">
         🤖 Time to Find Out
-      </CustomButton> */}
+      </CustomButton>
     </div>
   );
 }

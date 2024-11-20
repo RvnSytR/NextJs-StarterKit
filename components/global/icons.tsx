@@ -6,7 +6,7 @@ type CustomLoaderProps = IconProps & {
   customType?: "circle" | "default";
 };
 
-const iconSize = { xs: 10, sm: 14, base: 15, lg: 16, xl: 20 };
+const ICON_SIZE = { xs: 10, sm: 14, base: 15, lg: 16, xl: 20 };
 const svgProps = {
   xmlns: "http://www.w3.org/2000/svg",
   x: "0px",
@@ -74,7 +74,7 @@ const SectionTitle = ({
 }) => {
   return (
     <h5 className={cn("line-clamp-2 flex items-center gap-x-2", className)}>
-      {withHash ? <Hash size={iconSize.lg} /> : null} {children}
+      {withHash ? <Hash size={ICON_SIZE.lg} /> : null} {children}
     </h5>
   );
 };
@@ -103,4 +103,4 @@ const GoogleIcon = ({ ...props }: React.SVGAttributes<SVGSVGElement>) => {
   );
 };
 
-export { iconSize, CustomLoader, CustomPageLabel, SectionTitle };
+export { ICON_SIZE, CustomLoader, CustomPageLabel, SectionTitle };

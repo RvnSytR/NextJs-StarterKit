@@ -1,10 +1,21 @@
-import { iconSize } from "./global/icons";
+import { ICON_SIZE } from "./global/icons";
 import { LayoutDashboard } from "lucide-react";
 
-const { sm } = iconSize;
-const COPYRIGHT_LABEL = `Copyright © ${new Date().getFullYear()}. Project Title. All rights reserved.`;
+const { sm } = ICON_SIZE;
 
-// #region // * Menu Types
+const LABEL = {
+  copyright: `Copyright © ${new Date().getFullYear()}. Project Title. All rights reserved.`,
+  loading: "Mohon tunggu sebentar...",
+  login: "Login berhasil!",
+  logout: "Logout berhasil!",
+};
+
+// #region // * Menu
+type Menu = {
+  section: string;
+  body: MenuBody[];
+};
+
 type MenuBody = {
   href: string;
   label: string;
@@ -13,16 +24,7 @@ type MenuBody = {
   isDisable?: boolean;
 };
 
-type Menu = {
-  section: string;
-  body: MenuBody[];
-};
-
-type GlobalMenu = "dashboard";
-// #endregion
-
-// #region // * Menu
-const globalMenu: Record<GlobalMenu, MenuBody> = {
+const globalMenu = {
   dashboard: {
     href: "/dashboard",
     label: "Dashboard",
@@ -31,25 +33,25 @@ const globalMenu: Record<GlobalMenu, MenuBody> = {
   },
 };
 
-const menu: Menu[] = [
+const MENU: Menu[] = [
   {
     section: "Home",
     body: [globalMenu.dashboard],
   },
 ];
 
-const GetMenu = (path: string) => {
-  const mergeMenu = [...menu];
+// const GetMenu = (path: string) => {
+//   const mergeMenu = [...menu];
 
-  const result = mergeMenu
-    .flatMap((menu) => menu.body)
-    .filter((item) => item.href === path);
+//   const result = mergeMenu
+//     .flatMap((menu) => menu.body)
+//     .filter((item) => item.href === path);
 
-  return result.length > 0
-    ? result[0]
-    : { href: "Not Found!", label: "Not Found!", protected: false };
-};
+//   return result.length > 0
+//     ? result[0]
+//     : { href: "Not Found!", label: "Not Found!", protected: false };
+// };
 // #endregion
 
 export type { Menu };
-export { COPYRIGHT_LABEL, GetMenu, menu };
+export { LABEL, MENU };
