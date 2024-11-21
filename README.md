@@ -1,35 +1,34 @@
 ## Tech Stack
 
-List the main technologies used in this project, including:
+List the stack i used in this kit, including:
 
-- **Framework:** Nextjs 15 with React 18
-- **Language:** Typescript
+- **Framework :** [Next.js 15](https://nextjs.org/) with [React 18](https://reactjs.org/)
+- **Language :** [TypeScript](https://www.typescriptlang.org/)
+
 - **Styling:**
-  - Tailwind CSS
-  - ShadCn
+
+  - [Tailwind CSS](https://tailwindcss.com/)
+  - [ShadCn](https://shadcn.dev/)
+
 - **Database:**
-  - Mysql manage using Drizzle ORM
+  - [MySQL](https://www.mysql.com/) database, managed with [Drizzle ORM](https://orm.drizzle.team/).
 
 ## Manual Package Install Guide (NPM)
 
-This guide provides step-by-step instructions for manually installing this package using NPM. Primarily intended for personal reference, it may also be helpful for others setting up the package manually.
+This guide provides step-by-step instructions how i manually installing this package using NPM. Primarily intended for personal reference, it may also be helpful for others setting up the package manually.
 
-### Downgrade to React 18
+### Step 1 : Credential Setup
 
-```
-npm i react@18 react-dom@18
-```
-
-### Sharp
-
-```
-npm i sharp
-```
-
-### Tailwind Animated
+- Downgrade to React 18
+- Tailwind Animated
+- Sharp, Prettier and Prettier Plugin Tailwind CSS
 
 ```sh
+npm i react@18 react-dom@18
+
 npm install -D tailwindcss-animated
+
+npm i sharp prettier prettier-plugin-tailwindcss
 ```
 
 #### Config
@@ -40,15 +39,7 @@ npm install -D tailwindcss-animated
 plugins: [require("tailwindcss-animated")],
 ```
 
-### Prettier and Prettier Plugin Tailwind CSS
-
-```sh
-npm i prettier prettier-plugin-tailwindcss
 ```
-
-#### Config
-
-```sh
 @/.prettierrc
 
 {
@@ -63,79 +54,73 @@ npx prettier . --write
 npx prettier . --check
 ```
 
-### ShadCN
+### Step 2 : ShadCN
+
+- Installation
+- Adding Component
+  - alert-dialog
+  - badge
+  - breadcrumb
+  - button (custom)
+  - calendar
+  - card
+  - checkbox
+  - dialog
+  - dropdown-menu
+  - form
+  - input
+  - label
+  - pagination
+  - radio-group
+  - scroll-area
+  - select
+  - separator
+  - sheet
+  - skeleton
+  - sooner
+  - table
+  - textarea
+  - tooltip
+- Next Themes
 
 ```sh
 npx shadcn@latest init
-```
 
-#### Adding Component
-
-```sh
 npx shadcn@latest add
-```
 
-#### Next Themes
-
-```sh
 npm install next-themes
 ```
 
-#### Theme Provider
+### Step 3 : Database, Drizzle and S3
 
-```
-@/components/theme-provider.tsx
-
-"use client"
-
-import * as React from "react"
-import { ThemeProvider as NextThemesProvider } from "next-themes"
-
-export function ThemeProvider({
-  children,
-  ...props
-}: React.ComponentProps<typeof NextThemesProvider>) {
-  return <NextThemesProvider {...props}>{children}</NextThemesProvider>
-}
-
-```
-
-### Bcrypt
-
-```
-npm i bcrypt
-npm i --save-dev @types/bcrypt
-```
-
-### Drizzle ORM
+- Intallation (Mysql2, Drizzle ORM, Drizzle Zod)
+- Drizzle Kit
+- S3 (AWS Client SDK)
 
 ```sh
-npm i drizzle-orm mysql2 dotenv
+npm i mysql2 drizzle-orm drizzle-zod
+
 npm i -D drizzle-kit tsx
-```
 
-#### Drizzle Zod
-
-```sh
-npm i drizzle-zod
-```
-
-### S3 (AWS SDK)
-
-```
 npm i @aws-sdk/client-s3
 npm i @aws-sdk/s3-request-presigner
 ```
 
-### Auth JS
+### Step 4 : Auth
 
-```
+- Bcrypt
+- AuthJs
+
+```sh
+npm i bcrypt
+npm i --save-dev @types/bcrypt
+
 npm install next-auth@beta
 ```
 
 ## Environment
 
-```sh
+```
 @/.env
 
 MYSQL_HOST=host
