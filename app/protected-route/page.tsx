@@ -6,7 +6,7 @@ export default async function Page() {
   const session = await auth();
 
   return (
-    <div className="flex min-h-dvh flex-col items-center justify-center gap-y-4">
+    <div className="container flex min-h-dvh flex-col items-center justify-center gap-y-4">
       <p>Hello from Protected Route!</p>
 
       <ThemeToggle />
