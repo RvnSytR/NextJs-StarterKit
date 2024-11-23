@@ -2,13 +2,13 @@
 
 List the stack i used in this kit, including:
 
-- **Framework :** [Next.js 15](https://nextjs.org/) with [React 18](https://reactjs.org/)
+- **Framework :** [Next.js 15](https://nextjs.org/) with [React 18](https://react.dev/)
 - **Language :** [TypeScript](https://www.typescriptlang.org/)
 
 - **Styling:**
 
   - [Tailwind CSS](https://tailwindcss.com/)
-  - [ShadCn](https://shadcn.dev/)
+  - [ShadCn](https://ui.shadcn.com/)
 
 - **Database:**
   - [MySQL](https://www.mysql.com/) database, managed with [Drizzle ORM](https://orm.drizzle.team/).
