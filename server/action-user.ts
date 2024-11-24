@@ -9,6 +9,8 @@ import { Role, user } from "@/lib/db/schema";
 
 export async function Check(email: string, password: string) {
   const [res] = await state.user.check.execute({ email: email });
+  if (!res) throw new Error("Akun tidak terdaftar!");
+
   if (!bcrypt.compareSync(password, res.password)) {
     throw new Error("Email atau Password Salah!");
   }
