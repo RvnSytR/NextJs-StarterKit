@@ -1,13 +1,12 @@
-import type { Metadata } from "next";
-import { Inter as FontSans } from "next/font/google";
 import "@/styles/globals.css";
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "@/components/ui/sonner";
 
-const fontSans = FontSans({
+export const font = Inter({
   subsets: ["latin"],
-  variable: "--font-sans",
 });
 
 export const metadata: Metadata = {
@@ -22,7 +21,7 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={fontSans.variable}>
+      <body className={font.className}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

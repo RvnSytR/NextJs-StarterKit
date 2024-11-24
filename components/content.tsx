@@ -4,7 +4,7 @@ import { LayoutDashboard } from "lucide-react";
 const { sm } = ICON_SIZE;
 
 const LABEL = {
-  copyright: `Copyright © ${new Date().getFullYear()}. Project Title. All rights reserved.`,
+  copyright: `Copyright © ${new Date().getFullYear()}. Title. All rights reserved.`,
   loading: "Mohon tunggu sebentar...",
   login: "Login berhasil!",
   logout: "Logout berhasil!",

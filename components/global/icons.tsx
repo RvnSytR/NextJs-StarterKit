@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { Hash, Loader, LoaderCircle, LucideProps } from "lucide-react";
+import { Loader, LoaderCircle, LucideProps } from "lucide-react";
 
 type IconProps = Omit<LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>;
 type CustomLoaderProps = IconProps & {
@@ -40,52 +40,6 @@ const CustomLoader = ({
   }
 };
 
-const SectionTitle = ({
-  withHash,
-  className,
-  children,
-}: {
-  withHash?: boolean;
-  className?: string;
-  children: React.ReactNode;
-}) => {
-  return (
-    <h5
-      className={cn(
-        "line-clamp-2 flex items-center gap-x-3 leading-tight",
-        className,
-      )}
-    >
-      {withHash && (
-        <Hash
-          size={ICON_SIZE.base}
-          className="flex-none text-muted-foreground"
-        />
-      )}
-      {children}
-    </h5>
-  );
-};
-
-const SectionLabel = ({
-  className,
-  children,
-}: {
-  className?: string;
-  children: React.ReactNode;
-}) => {
-  return (
-    <div
-      className={cn(
-        "flex flex-col items-center p-20 text-muted-foreground",
-        className,
-      )}
-    >
-      <p className="text-center text-sm font-normal">{children}</p>
-    </div>
-  );
-};
-
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const GoogleIcon = ({ ...props }: React.SVGAttributes<SVGSVGElement>) => {
   return (
@@ -110,4 +64,4 @@ const GoogleIcon = ({ ...props }: React.SVGAttributes<SVGSVGElement>) => {
   );
 };
 
-export { ICON_SIZE, CustomLoader, SectionLabel, SectionTitle };
+export { ICON_SIZE, CustomLoader };
