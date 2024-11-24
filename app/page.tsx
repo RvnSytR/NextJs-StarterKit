@@ -8,7 +8,10 @@ export default async function Page() {
 
       <ThemeToggle />
 
-      <CustomButton customType="nav" variant="outline" href="/protected-route">
+      <CustomButton
+        data={{ customType: "nav", href: "/protected-route" }}
+        variant="outline"
+      >
         Protected Route
       </CustomButton>
     </div>

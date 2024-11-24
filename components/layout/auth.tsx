@@ -23,7 +23,6 @@ import {
 import { toast } from "sonner";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { ICON_SIZE } from "../global/icons";
 import { LogIn } from "lucide-react";
 
 export function LoginForm() {
@@ -91,7 +90,7 @@ export function LoginForm() {
         />
 
         <Button type="submit" className="mt-2 gap-x-2" disabled={isLoad}>
-          <LogIn size={ICON_SIZE.base} />
+          <LogIn />
           Login
         </Button>
       </form>

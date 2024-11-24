@@ -29,7 +29,9 @@ export default async function Page() {
       <Card className="w-full md:w-2/4 lg:w-1/3">
         <CardHeader>
           <CardTitle className="mb-2 text-center">
-            <Link href="/">Project Title</Link>
+            <Link href="/" prefetch>
+              Project Title
+            </Link>
           </CardTitle>
           <CardDescription className="text-center">
             Hold up! 🔒 Who goes there? 🕵️‍♂️ Only logged-in members can enter the

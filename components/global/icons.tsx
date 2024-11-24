@@ -6,7 +6,7 @@ type CustomLoaderProps = IconProps & {
   customType?: "circle" | "default";
 };
 
-const ICON_SIZE = { xs: 10, sm: 14, base: 15, lg: 16, xl: 20 };
+const ICON_SIZE = { sm: 15, base: 17, lg: 19 };
 const svgProps = {
   xmlns: "http://www.w3.org/2000/svg",
   x: "0px",
@@ -40,29 +40,6 @@ const CustomLoader = ({
   }
 };
 
-const CustomPageLabel = ({
-  label,
-  className,
-}: {
-  label: string[];
-  className?: string;
-}) => {
-  return (
-    <div
-      className={cn(
-        "text-muted-foreground flex flex-col items-center p-8",
-        className,
-      )}
-    >
-      {label.map((item, index) => (
-        <p key={index} className="text-center text-sm font-normal">
-          {item}
-        </p>
-      ))}
-    </div>
-  );
-};
-
 const SectionTitle = ({
   withHash,
   className,
@@ -73,9 +50,39 @@ const SectionTitle = ({
   children: React.ReactNode;
 }) => {
   return (
-    <h5 className={cn("line-clamp-2 flex items-center gap-x-2", className)}>
-      {withHash ? <Hash size={ICON_SIZE.lg} /> : null} {children}
+    <h5
+      className={cn(
+        "line-clamp-2 flex items-center gap-x-3 leading-tight",
+        className,
+      )}
+    >
+      {withHash && (
+        <Hash
+          size={ICON_SIZE.base}
+          className="flex-none text-muted-foreground"
+        />
+      )}
+      {children}
     </h5>
+  );
+};
+
+const SectionLabel = ({
+  className,
+  children,
+}: {
+  className?: string;
+  children: React.ReactNode;
+}) => {
+  return (
+    <div
+      className={cn(
+        "flex flex-col items-center p-20 text-muted-foreground",
+        className,
+      )}
+    >
+      <p className="text-center text-sm font-normal">{children}</p>
+    </div>
   );
 };
 
@@ -103,4 +110,4 @@ const GoogleIcon = ({ ...props }: React.SVGAttributes<SVGSVGElement>) => {
   );
 };
 
-export { ICON_SIZE, CustomLoader, CustomPageLabel, SectionTitle };
+export { ICON_SIZE, CustomLoader, SectionLabel, SectionTitle };

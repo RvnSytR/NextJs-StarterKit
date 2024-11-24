@@ -1,6 +1,6 @@
-import { CustomButton } from "@/components/global/custom-button";
-import { ThemeToggle } from "@/components/global/theme-provider";
 import { auth } from "@/lib/auth";
+import { ThemeToggle } from "@/components/global/theme-provider";
+import { CustomButton } from "@/components/global/custom-button";
 
 export default async function Page() {
   const session = await auth();
@@ -13,7 +13,7 @@ export default async function Page() {
 
       <p>{JSON.stringify(session)}</p>
 
-      <CustomButton customType="logout" variant="outline">
+      <CustomButton data={{ customType: "logout" }} variant="outline">
         Logout
       </CustomButton>
     </div>

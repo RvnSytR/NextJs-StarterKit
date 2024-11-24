@@ -1,6 +1,6 @@
 "use server";
 
-import { redirect } from "next/navigation";
+import { redirect, type RedirectType } from "next/navigation";
 import { revalidatePath } from "next/cache";
 
 import { auth } from "@/lib/auth";
@@ -14,10 +14,13 @@ export async function ValidateSession() {
   return res.username == username && res.email === email && res.role === role;
 }
 
-export async function ClientRedirect(path: string) {
-  redirect(path);
+export async function ClientRedirect(url: string, type?: RedirectType) {
+  redirect(url, type);
 }
 
-export async function ClientRevalidatePath(path: string) {
-  revalidatePath(path);
+export async function ClientRevalidatePath(
+  originalPath: string,
+  type?: "layout" | "page",
+) {
+  revalidatePath(originalPath, type);
 }

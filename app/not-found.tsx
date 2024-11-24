@@ -14,8 +14,7 @@ export default function NotFound() {
       </div>
 
       <CustomButton
-        customType="nav"
-        href="/"
+        data={{ customType: "nav", href: "/" }}
         loadText="Go to Main Page"
         variant="outline"
         size="lg"

@@ -10,92 +10,55 @@ import { Delay } from "@/lib/helper";
 
 import { toast } from "sonner";
 import { LABEL } from "../content";
-import { CustomLoader, ICON_SIZE } from "./icons";
+import { CustomLoader } from "./icons";
 
 import { Button, ButtonProps } from "../ui/button";
 import { RefreshCw } from "lucide-react";
 
 type CustomButtonProps = ButtonProps & {
-  customType:
-    | "loading"
-    | "nav"
-    | "revalidate"
-    | "scroll"
-    | "logout"
-    | null
-    | undefined;
-  href?: string;
-  offset?: number;
   loadText?: string;
   loadPosition?: "left" | "right";
   children: React.ReactNode;
+  data:
+    | {
+        customType: "loading" | "logout" | null | undefined;
+      }
+    | {
+        customType: "nav";
+        href: string;
+      }
+    | {
+        customType: "revalidate";
+        path: string;
+        type?: "layout" | "page";
+      }
+    | {
+        customType: "scroll";
+        elementId: string;
+        offset?: number;
+      };
 };
 
 export function CustomButton({
-  customType,
-  href,
+  data,
   loadText,
-  loadPosition,
-  offset,
+  loadPosition = "left",
   children,
   ...props
 }: CustomButtonProps) {
   const [loading, setLoading] = useState<boolean>(false);
-  const { size } = props;
-  if (customType === "logout") loadText = "Logging Out...";
+  const { customType } = data;
 
   const LoaderNode = (): React.ReactNode => {
-    const lnPos = loadPosition ?? "left";
-    const { sm, base, lg } = ICON_SIZE;
-
-    const lnICON_SIZE: number =
-      size === "lg" ? lg : size === "sm" || size === "iconsm" ? sm : base;
+    const loader = <CustomLoader customType="circle" />;
 
     return (
       <div className="flex items-center gap-x-2">
-        {lnPos == "left" && (
-          <CustomLoader
-            customType="circle"
-            size={lnICON_SIZE}
-            strokeWidth={size === "lg" ? 3 : 2}
-          />
-        )}
+        {loadPosition == "left" && loader}
         {loadText}
-        {lnPos == "right" && (
-          <CustomLoader
-            customType="circle"
-            size={lnICON_SIZE}
-            strokeWidth={size === "lg" ? 3 : 2}
-          />
-        )}
+        {loadPosition == "right" && loader}
       </div>
     );
-  };
-
-  const RequiredNode = ({ req }: { req: string[] }): React.ReactNode => {
-    return (
-      <div className="rounded border border-destructive p-2">
-        <p>Custom Button of this type must have these property:</p>
-
-        <ol className="flex list-inside list-decimal flex-col">
-          {req.map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ol>
-      </div>
-    );
-  };
-
-  const logoutHandler = async () => {
-    setLoading(true);
-    toast.promise(LogoutHandler(), {
-      loading: LABEL.loading,
-      success: () => {
-        ClientRedirect("/login");
-        return LABEL.logout;
-      },
-      error: (e: Error) => e.message,
-    });
   };
 
   switch (customType) {
@@ -111,72 +74,71 @@ export function CustomButton({
         </Button>
       );
 
+    case "logout":
+      return (
+        <Button
+          type="button"
+          onClick={async () => {
+            toast.promise(LogoutHandler(), {
+              loading: LABEL.loading,
+              success: () => {
+                ClientRedirect("/login");
+                return LABEL.logout;
+              },
+              error: (e: Error) => e.message,
+            });
+          }}
+          disabled={loading}
+          {...props}
+        >
+          {children}
+        </Button>
+      );
+
     case "nav":
-      return !href ? (
-        <RequiredNode req={["href"]} />
-      ) : (
-        <Link href={href} className="w-fit">
-          <Button
-            type="button"
-            onClick={() => setLoading(true)}
-            disabled={loading}
-            {...props}
-          >
-            {loading ? <LoaderNode /> : children}
-          </Button>
-        </Link>
+      return (
+        <Button
+          type="button"
+          onClick={() => setLoading(true)}
+          disabled={loading}
+          asChild
+          {...props}
+        >
+          <Link href={data.href}>{loading ? <LoaderNode /> : children}</Link>
+        </Button>
       );
 
     case "revalidate":
-      return !href ? (
-        <RequiredNode req={["href as Path"]} />
-      ) : (
+      return (
         <Button
           type="button"
           onClick={async () => {
             setLoading(true);
-            ClientRevalidatePath(href);
-            await Delay(0.5);
+            ClientRevalidatePath(data.path, data.type);
+            await Delay(0.6);
             setLoading(false);
           }}
           className="gap-x-2"
           disabled={loading}
           {...props}
         >
-          <RefreshCw
-            size={ICON_SIZE.base}
-            className={loading ? "animate-spin" : ""}
-          />
+          <RefreshCw className={loading ? "animate-spin" : ""} />
           {loading ? (loadText ?? "Revalidating...") : children}
         </Button>
       );
 
     case "scroll":
-      return !href ? (
-        <RequiredNode req={["href"]} />
-      ) : (
+      return (
         <Button
           type="button"
           onClick={() => {
-            const element = document.getElementById(href);
+            const element = document.getElementById(data.elementId);
             if (!element) return;
-            window.scroll({ top: element.offsetTop - (offset ?? 0) });
+            window.scroll({ top: element.offsetTop - (data.offset ?? 0) });
           }}
           {...props}
         >
           {loading ? <LoaderNode /> : children}
-        </Button>
-      );
-
-    case "logout":
-      return (
-        <Button
-          type="button"
-          onClick={logoutHandler}
-          disabled={loading}
-          {...props}
-        >
-          {children}
         </Button>
       );
 
