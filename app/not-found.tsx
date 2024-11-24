@@ -14,11 +14,13 @@ export default function NotFound() {
       </div>
 
       <CustomButton
-        data={{ customType: "nav", href: "/" }}
-        loadText="Go to Main Page"
+        // data={{ customType: "nav", href: "/" }}
+        data={{ customType: "loading" }}
+        loadText="Going to Main Page..."
         variant="outline"
         size="lg"
-        className="h-16 gap-x-6 rounded-full border-4 text-xl font-bold hover:border-primary"
+        className="h-16 rounded-full border-4 text-xl font-bold hover:border-primary"
+        loaderClassName="gap-x-4"
       >
         Go to Main Page
       </CustomButton>

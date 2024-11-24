@@ -8,6 +8,7 @@ import { LogoutHandler } from "@/app/login/sign";
 import { ClientRedirect, ClientRevalidatePath } from "@/server/action";
 import { Delay } from "@/lib/helper";
 
+import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 import { LABEL } from "../content";
 import { CustomLoader } from "./icons";
@@ -16,6 +17,7 @@ import { Button, ButtonProps } from "../ui/button";
 import { RefreshCw } from "lucide-react";
 
 type CustomButtonProps = ButtonProps & {
+  loaderClassName?: string;
   loadText?: string;
   loadPosition?: "left" | "right";
   children: React.ReactNode;
@@ -40,6 +42,7 @@ type CustomButtonProps = ButtonProps & {
 
 export function CustomButton({
   data,
+  loaderClassName,
   loadText,
   loadPosition = "left",
   children,
@@ -52,7 +55,7 @@ export function CustomButton({
     const loader = <CustomLoader customType="circle" />;
 
     return (
-      <div className="flex items-center gap-x-2">
+      <div className={cn("flex items-center gap-x-2", loaderClassName)}>
         {loadPosition == "left" && loader}
         {loadText}
         {loadPosition == "right" && loader}

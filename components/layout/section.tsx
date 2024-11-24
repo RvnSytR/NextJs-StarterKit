@@ -4,9 +4,7 @@ import { ICON_SIZE } from "../global/icons";
 import { Hash } from "lucide-react";
 
 export function Hero({ children }: { children: React.ReactNode }) {
-  return (
-    <h1 className={cn("text-center text-6xl font-extrabold")}>{children}</h1>
-  );
+  return <h1 className="text-center">{children}</h1>;
 }
 
 export function SectionTitle({
