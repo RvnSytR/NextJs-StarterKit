@@ -9,6 +9,7 @@ import { ClientRedirect, ClientRevalidatePath } from "@/server/action";
 import { Delay } from "@/lib/helper";
 
 import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 import { LABEL } from "../content";
 import { CustomLoader } from "./icons";
@@ -17,6 +18,7 @@ import { Button, ButtonProps } from "../ui/button";
 import { RefreshCw } from "lucide-react";
 
 type CustomButtonProps = ButtonProps & {
+  loaderClassName?: string;
   loadText?: string;
   loadPosition?: "left" | "right";
   loadClassName?: string;
