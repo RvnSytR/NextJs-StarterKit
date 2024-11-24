@@ -15,10 +15,11 @@ export default function NotFound() {
 
       <CustomButton
         data={{ customType: "nav", href: "/" }}
-        loadText="Go to Main Page"
+        loadText="Going to Main Page..."
+        loadClassName="gap-x-4"
         variant="outline"
         size="lg"
-        className="h-16 gap-x-6 rounded-full border-4 text-xl font-bold hover:border-primary"
+        className="h-16 rounded-full border-4 text-xl font-bold hover:border-primary"
       >
         Go to Main Page
       </CustomButton>
