@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
+import Link, { LinkProps } from "next/link";
 import { useState } from "react";
 
 import { LogoutHandler } from "@/app/login/sign";
@@ -23,10 +23,9 @@ type CustomButtonProps = ButtonProps & {
     | {
         customType: "loading" | "logout" | null | undefined;
       }
-    | {
+    | ({
         customType: "nav";
-        href: string;
-      }
+      } & LinkProps)
     | {
         customType: "revalidate";
         path: string;
@@ -79,13 +78,17 @@ export function CustomButton({
         <Button
           type="button"
           onClick={async () => {
+            setLoading(true);
             toast.promise(LogoutHandler(), {
               loading: LABEL.loading,
               success: () => {
                 ClientRedirect("/login");
                 return LABEL.logout;
               },
-              error: (e: Error) => e.message,
+              error: (e: Error) => {
+                setLoading(false);
+                return e.message;
+              },
             });
           }}
           disabled={loading}
@@ -96,6 +99,8 @@ export function CustomButton({
       );
 
     case "nav":
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { customType, ...linkProps } = data;
       return (
         <Button
           type="button"
@@ -104,7 +109,7 @@ export function CustomButton({
           asChild
           {...props}
         >
-          <Link href={data.href}>{loading ? <LoaderNode /> : children}</Link>
+          <Link {...linkProps}>{loading ? <LoaderNode /> : children}</Link>
         </Button>
       );
 
